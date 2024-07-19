@@ -20,5 +20,10 @@ class Game:
 
 
             # * draw
+            self.display_surface.fill(COLORS['bg'])
             pygame.display.update()
         pygame.qiut()
+
+if __name__ == '__main__':
+    game = Game()
+    game.run()
