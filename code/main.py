@@ -16,7 +16,7 @@ class Game:
         self.all_sprites = pygame.sprite.Group()
         self.paddle_sprites = pygame.sprite.Group()
         self.player = Player((self.all_sprites, self.paddle_sprites))
-        self.ball = Ball(self.all_sprites, self.paddle_sprites)
+        self.ball = Ball(self.all_sprites, self.paddle_sprites, self.update_score)
         Opponent((self.all_sprites, self.paddle_sprites), self.ball)
 
         # * score 
@@ -37,6 +37,10 @@ class Game:
 
         # * line separator
         pygame.draw.line(self.display_surface, COLORS['score'], (WINDOW_WIDTH / 2 , 0), (WINDOW_WIDTH / 2 , WINDOW_HEIGHT), 7)
+
+
+    def update_score(self, side):
+        self.score['player' if side == 'player' else 'opponent'] += 1
 
     def run(self):
         while self.running:
