@@ -1,6 +1,6 @@
 from settings import * 
 from sprites import *
-
+import json 
 
 
 
@@ -48,6 +48,8 @@ class Game:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
+                    with open(join('data', 'score.txt'), 'w') as score_file:
+                        json.dump(self.score, score_file)
             
             # * update 
             self.all_sprites.update(dt)
@@ -57,7 +59,7 @@ class Game:
             self.display_score()
             self.all_sprites.draw(self.display_surface)
             pygame.display.update()
-        pygame.qiut()
+        pygame.quit()
 
 if __name__ == '__main__':
     game = Game()
