@@ -1,4 +1,4 @@
-from pygame.sprite import Group
+from pygame.sprite import _Group, Group
 from settings import *
 
 class Player(pygame.sprite.Sprite):
@@ -27,3 +27,15 @@ class Player(pygame.sprite.Sprite):
     def update(self, dt):
         self.get_direction()
         self.move(dt)
+
+class Ball(pygame.sprite.Sprite):
+    def __init__(self, groups, paddle_sprites):
+        super().__init__(groups)
+
+
+        # * image
+        self.image = pygame.Surface(SIZE['ball'])
+        self.image.fill(COLORS['ball'])
+
+        # * rect & movement
+        self.rect = self.image.get_frect(center = (WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2))
