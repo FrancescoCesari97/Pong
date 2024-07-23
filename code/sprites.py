@@ -7,7 +7,21 @@ class Player(pygame.sprite.Sprite):
 
         # * image
         self.image = pygame.Surface(SIZE['paddle'])
+        self.image.fill(COLORS['paddle'])
 
 
         # * rect & movement
         self.rect = self.image.get_frect(center = POS['player'])
+        self.direction = 0
+        self.speed = SPEED['player']
+
+    def move(self,dt):
+        self.rect.centery += self.direction * self.speed * dt
+
+    def get_direction(self):
+        keys = pygame.key.get_pressed()
+        self.direction = int(keys[pygame.K_s]) - int(keys[pygame.K_w])
+
+    def update(self, dt):
+        self.get_direction()
+        self.move(dt)
