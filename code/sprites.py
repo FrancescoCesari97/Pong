@@ -12,6 +12,9 @@ class Paddle(pygame.sprite.Sprite):
         pygame.draw.rect(self.image, COLORS['paddle'], pygame.FRect((0,0), SIZE['paddle']), 0, 5)
         # self.image.fill(COLORS['paddle'])
 
+        # * shadow surf
+        self.shadow_surf = self.image.copy()
+        pygame.draw.rect(self.shadow_surf, COLORS['paddle shadow'],  pygame.FRect((0,0), SIZE['paddle']), 0, 5)
 
         # * rect & movement
         self.rect = self.image.get_frect(center = POS['player'])
@@ -60,6 +63,10 @@ class Ball(pygame.sprite.Sprite):
         self.image = pygame.Surface(SIZE['ball'], pygame.SRCALPHA)
         pygame.draw.circle(self.image, COLORS['ball'], (SIZE['ball'][0] / 2, SIZE['ball'][0] / 2), SIZE['ball'][0] / 2)
         # self.image.fill(COLORS['ball'])
+
+        # * shadow surf
+        self.shadow_surf = self.image.copy()
+        pygame.draw.circle(self.image, COLORS['ball shadow'], (SIZE['ball'][0] / 2, SIZE['ball'][0] / 2), SIZE['ball'][0] / 2)
 
         # * rect & movement
         self.rect = self.image.get_frect(center = (WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2))
